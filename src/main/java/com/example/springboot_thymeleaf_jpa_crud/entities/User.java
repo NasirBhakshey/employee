@@ -1,5 +1,6 @@
 package com.example.springboot_thymeleaf_jpa_crud.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,24 +29,13 @@ public class User {
     @Column
     private String phoneno;
 
-    @Column(nullable=false)
-    @Temporal(TemporalType.DATE)
-    private Date date; 
+    private LocalDate date; 
 
-    @PrePersist
-    private void onCreate()
-    {
-        date=new Date();
-    } 
+    public void PrePersist(){
+        this.date=LocalDate.now();
+    }
     
 
-
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
     public Integer getID() {
         return ID;
     }
@@ -75,6 +65,16 @@ public class User {
     }
     public void setPhoneno(String phoneno) {
         this.phoneno = phoneno;
+    }
+
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
 
